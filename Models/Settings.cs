@@ -9,5 +9,10 @@
         }
 
         //public static bool IsAuthenticated { get; set; }
+        public static string Email
+        {
+            get => Preferences.Default.Get(nameof(Email), string.Empty);
+            set => Preferences.Default.Set(nameof(Email), value);
+        }
     }
 }

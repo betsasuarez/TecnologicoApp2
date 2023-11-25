@@ -38,9 +38,43 @@ namespace TecnologicoApp.ViewModels
                 return;
             }
 
+            var loginData = GetLoginData();
+
+            if (loginData != null && !loginData.Any())
+            {
+                await Util.ShowToastAsync("Configure usuarios");
+                return;
+            }
+
+            var loginDataEmail = loginData.FirstOrDefault(x => x.Key  == Usuario.Email);
+
+            if (loginDataEmail.Equals(default(KeyValuePair<string, string>)))
+            {
+                await Util.ShowToastAsync($"El correo {Usuario.Email} no existe");
+                return;
+            }
+
+            if (loginDataEmail.Value != Usuario.Password)
+            {
+                await Util.ShowToastAsync($"Contraseña Incorrecta");
+                return;
+            }
+
             Settings.IsAuthenticated = true;
-            
+            Settings.Email = Usuario.Email;
+
             await Shell.Current.GoToAsync($"///{nameof(WelcomePage)}");
+        }
+
+        private List<KeyValuePair<string, string>> GetLoginData()
+        {
+
+            var result = new List<KeyValuePair<string, string>>();
+            {
+                new KeyValuePair<string, string>("gustavo@itsl.com", "Mama1234");
+                new KeyValuePair<string, string>("betsabe@mail.com", "Papa1234");
+            }
+            return result;
         }
 
         private bool IsAValidEmail(string email)
