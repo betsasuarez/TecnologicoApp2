@@ -5,46 +5,67 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Registro">
     <ScrollView>
-        <StackLayout VerticalOptions="Center">
-
-            <StackLayout>
-                <Label Text="Email" TextColor="Black" />
-                <Entry
-                    x:Name="EmailEntry"
-                    HorizontalOptions="StartAndExpand"
-                    Keyboard="Email"
-                    Text="{Binding Usuario.Email}"
-                    TextColor="Black"
-                    WidthRequest="333" />
+        <StackLayout VerticalOptions="Start">
+            <Label
+                Padding="35"
+                FontSize="Large"
+                HorizontalOptions="Center"
+                Text="REGISTRO"
+                TextColor="Black" />
+            <!--  formulario  -->
+            <StackLayout Padding="0,10,0,0">
+                <!--  email  -->
+                <StackLayout Padding="20">
+                    <Label Text="Email" TextColor="Black" />
+                    <Entry
+                        x:Name="EmailEntry"
+                        HorizontalOptions="StartAndExpand"
+                        Keyboard="Email"
+                        Text="{Binding Usuario.Email}"
+                        TextColor="Black"
+                        WidthRequest="333" />
+                </StackLayout>
+                <!--  Contraseña  -->
+                <StackLayout Padding="20">
+                    <Label Text="Contraseña" TextColor="Black" />
+                    <Entry
+                        x:Name="PasswordEntry"
+                        HorizontalOptions="StartAndExpand"
+                        IsPassword="True"
+                        Text="{Binding Usuario.Password}"
+                        TextColor="Black"
+                        WidthRequest="333" />
+                </StackLayout>
+                <StackLayout Padding="20">
+                    <Label Text="Repetir Contraseña" TextColor="Black" />
+                    <Entry
+                        x:Name="PasswordEntry2"
+                        HorizontalOptions="StartAndExpand"
+                        IsPassword="True"
+                        Text="{Binding Usuario.Password}"
+                        TextColor="Black"
+                        WidthRequest="333" />
+                </StackLayout>
             </StackLayout>
+            <!--  Boton  -->
+            <StackLayout Padding="50,10">
+                <Button
+                    x:Name="SaveBtn"
+                    Command="{Binding LoginCommand}"
+                    Text="Guardar" />
+                <StackLayout>
+                    <Label
+                        HorizontalOptions="Center"
+                        Text="Registro"
+                        VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding RegisterComand}" />
+                        </Label.GestureRecognizers>
 
-            <StackLayout>
-                <Label Text="Contraseña" TextColor="Black" />
-                <Entry
-                    x:Name="PasswordEntry"
-                    HorizontalOptions="StartAndExpand"
-                    IsPassword="True"
-                    Text="{Binding Usuario.Password}"
-                    TextColor="Black"
-                    WidthRequest="333" />
-            </StackLayout>
+                    </Label>
 
-            <StackLayout>
-                <Label Text="Repetir Contraseña" TextColor="Black" />
-                <Entry
-                    x:Name="PasswordEntry2"
-                    HorizontalOptions="StartAndExpand"
-                    IsPassword="True"
-                    Text="{Binding Usuario.Password}"
-                    TextColor="Black"
-                    WidthRequest="333" />
+                </StackLayout>
             </StackLayout>
-            <Button
-                x:Name="SaveBnt"
-                Command="{Binding LoginCommand}"
-                Text="Guardar" />
         </StackLayout>
     </ScrollView>
-
-
 </ContentPage>
