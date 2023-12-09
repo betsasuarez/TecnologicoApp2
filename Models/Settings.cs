@@ -13,6 +13,21 @@
         {
             get => Preferences.Default.Get(nameof(Email), string.Empty);
             set => Preferences.Default.Set(nameof(Email), value);
-        }
+
+            public static string RegistroEmail
+            {
+              get => Preferences.Default.Get(nameof(IsAuthenticated), false);
+               set => Preferences.Default.Set(nameof(IsAuthenticated), value);
+
+            }
+
+              public static string RegistroPassword
+              {
+                 get => Preferences.Default.Get(nameof(IsAuthenticated), false);
+                 set => Preferences.Default.Set(nameof(IsAuthenticated), value);
+              }
+
+
     }
+    
 }

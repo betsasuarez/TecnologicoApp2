@@ -2,27 +2,44 @@
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using TecnologicoApp.Models;
+using TecnologicoApp.Services.Interfaces;
 using TecnologicoApp.Views;
 
 namespace TecnologicoApp.ViewModels
 {
     public class LoginPageViewModel : INotifyPropertyChanged
     {
+        private readonly ISignupSignninService signupSignninService;
         #region "Properties"
 
         public UsuarioRegistro Usuario { get; set; }
 
         public Command LoginCommand { get; set; }
 
+        public Command RegisterCommand { get; set; }
+
         #endregion
 
-        public LoginPageViewModel()
+        public LoginPageViewModel(ISignupSignninService signupSignninService)
         {
             Usuario = new UsuarioRegistro();
             LoginCommand = new Command(LoginAsync);
+            this.signupSignninService = signupSignninService;
+            //RegisterCommand= new Command (Go toSSignupSignninServicePageAsync);
         }
 
         #region "Logic"
+
+        private async void SingUpAsync()
+        {
+
+            var result = await singupSigninService.SingUpAsync(Usuario);
+            if (!result)
+            {
+                await Util.ShowToastAsync("NO SE REGISTRO EL USUARIO");
+                return;
+            }
+        }
 
         private async void LoginAsync()
         {
